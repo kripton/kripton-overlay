@@ -1,7 +1,7 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="NewTek NDI SDK"
 SRC_URI="https://ndi.palakis.fr/sdk/ndi-sdk-${PV}-Linux.gz"
@@ -32,7 +32,7 @@ src_unpack() {
 }
 
 src_install() {
-	dolib "${S}/lib/x86_64-linux-gnu/libndi.so.${PV}"
+	dolib.so "${S}/lib/x86_64-linux-gnu/libndi.so.${PV}"
 	dosym "libndi.so.${PV}" "/usr/lib64/libndi.so.4"
 	dosym "libndi.so.4" "/usr/lib64/libndi.so"
 	for header in `ls "${S}/include/"`; do
