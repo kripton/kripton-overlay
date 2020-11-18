@@ -3,22 +3,12 @@
 
 EAPI=7
 
-inherit meson ninja-utils git-r3
+inherit meson
 
-EGIT_REPO_URI="https://github.com/Genymobile/scrcpy.git"
+KEYWORDS="~amd64"
 
-if [[ ${PV} = 9999* ]]; then
-	MY_SERVER_PV="1.3"
-else
-	EGIT_COMMIT="v${PV}"
-	MY_SERVER_PV="${PV}"
-	KEYWORDS="~amd64"
-fi
-
-MY_SERVER_PN="scrcpy-server"
-MY_SERVER_P="${MY_SERVER_PN}-v${MY_SERVER_PV}"
-
-SRC_URI="https://github.com/Genymobile/${PN}/releases/download/v${MY_SERVER_PV}/${MY_SERVER_P}"
+SRC_URI="https://github.com/Genymobile/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	https://github.com/Genymobile/${PN}/releases/download/v${PV}/${PN}-server-v${PV}"
 
 DESCRIPTION="Display and control your Android device"
 HOMEPAGE="https://blog.rom1v.com/2018/03/introducing-scrcpy/"
@@ -29,16 +19,15 @@ IUSE=""
 
 RESTRICT="test"
 
-COMMON_DEPEND="media-libs/libsdl2[X]
+DEPEND="media-libs/libsdl2[X]
 	media-video/ffmpeg"
-DEPEND="${COMMON_DEPEND}"
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${DEPEND}"
 PDEPEND=""
 
 src_configure() {
 	local emesonargs=(
 		-Db_lto=true
-		-Dprebuilt_server="${DISTDIR}/${MY_SERVER_P}"
+		-Dprebuilt_server="${DISTDIR}/${PN}-server-v${PV}"
 	)
 	meson_src_configure
 }
