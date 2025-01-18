@@ -46,7 +46,8 @@ src_prepare() {
 	sed -e "s|lib/${CMAKE_C_LIBRARY_ARCHITECTURE}|$(get_libdir)|g" \
 		-i variables.cmake || die
 
-	sed -e "s|/etc/udev/rules.d|/lib/udev/rules.d/|g" \
+	# TODO: Is hardcoding the path fine?
+	sed -e "s|/etc/udev/rules.d|$(get_udevdir)|g" \
 		-i variables.cmake || die
 
 	cmake_src_prepare
@@ -57,7 +58,7 @@ src_configure() {
         )
         # -DWITH_TESTS option works only with debug build, needs to be set here
         # to not be overriden by cmake.eclass
-        CMAKE_BUILD_TYPE=$(usex test Release Release) cmake_src_configure
+        CMAKE_BUILD_TYPE=Release cmake_src_configure
 }
 
 #src_install() {
