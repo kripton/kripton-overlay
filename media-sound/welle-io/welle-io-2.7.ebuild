@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit desktop qmake-utils
 
@@ -22,11 +22,9 @@ IUSE=""
 # Tests will hang if those files are missing
 RESTRICT="test"
 
-DEPEND="dev-qt/qtcharts:5[qml]
-		dev-qt/qtdeclarative:5
-		dev-qt/qtmultimedia:5
-		dev-qt/qtquickcontrols:5
-		dev-qt/qtquickcontrols2:5
+DEPEND="dev-qt/qtcharts:6[qml]
+		dev-qt/qtdeclarative:6
+		dev-qt/qtmultimedia:6
 		net-wireless/rtl-sdr
 		sci-libs/fftw:3.0
 		virtual/glu
@@ -50,14 +48,14 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake5
+	eqmake6
 }
 
 src_install() {
 	# Performing a manual installation as "make install" is not implemented.
 	dodoc README.md
 	newicon src/welle-gui/icons/icon.png "${PN}.png"
-	domenu "${PN}.desktop"
+	domenu "io.welle.welle-gui.desktop"
 	dobin "src/welle-gui/welle-io"
-	dobin "src/welle-cli/welle-cli"
+	#dobin "src/welle-cli/welle-cli"
 }
