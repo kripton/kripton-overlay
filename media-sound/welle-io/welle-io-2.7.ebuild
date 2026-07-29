@@ -40,9 +40,9 @@ src_prepare() {
 		-e 's|^\([[:space:]]*CONFIG[[:space:]]\++=[[:space:]]\+airspy\)|#\1|' \
 		src/backend.pri || die "Couldn't disable airspy support"
 
-	sed -i \
-		-e 's|^\([[:space:]]*CONFIG[[:space:]]\++=[[:space:]]\+soapysdr\)|#\1|' \
-		src/backend.pri || die "Couldn't disable soapysdr support"
+#	sed -i \
+#		-e 's|^\([[:space:]]*CONFIG[[:space:]]\++=[[:space:]]\+soapysdr\)|#\1|' \
+#		src/backend.pri || die "Couldn't disable soapysdr support"
 
 	eapply_user
 }
