@@ -13,7 +13,7 @@ DESCRIPTION="tool for interacting with rp2040 devices and binaries"
 HOMEPAGE="https://github.com/raspberrypi/picotool"
 SRC_URI="
 	https://github.com/raspberrypi/${PN}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz
-	https://github.com/raspberrypi/${SDK_PN}/archive/refs/tags/${SDK_PV}.tar.gz -> ${SDK_P}.tar.gz
+	https://github.com/raspberrypi/${SDK_PN}/releases/download/${SDK_PV}/${SDK_P}.tar.gz
 "
 
 # picotool (BSD)
